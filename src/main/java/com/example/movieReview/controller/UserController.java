@@ -1,7 +1,7 @@
 package com.example.movieReview.controller;
 
 import com.example.movieReview.domain.model.User;
-import com.example.movieReview.services.UserService;
+import com.example.movieReview.serviceImpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -12,20 +12,20 @@ import reactor.core.publisher.Mono;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    UserServiceImpl userServiceImpl;
 
     @GetMapping
     public Flux<User> getAllUsers() {
-        return userService.getAllUsers();
+        return userServiceImpl.getAllUsers();
     }
 
     @GetMapping("/{id}")
     public Mono<User> getUser(@PathVariable Long id) {
-        return userService.getUserById(id);
+        return userServiceImpl.getUserById(id);
     }
 
     @PostMapping
     public Mono<User> addUser(@RequestBody User user) {
-        return userService.addUser(user);
+        return userServiceImpl.addUser(user);
     }
 }
